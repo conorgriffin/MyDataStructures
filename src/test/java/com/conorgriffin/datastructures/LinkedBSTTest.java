@@ -8,21 +8,33 @@ public class LinkedBSTTest {
     @Test
     public void testAssertions() {
         
-        // test data
+        // test insert, lookup and delete operations on Binary Search Tree implementation LinkedBST.java
         LinkedBST<Integer> intTree = new LinkedBST<Integer>();
-        for(int i = 1; i <= 10; i++) {
-            intTree.insert(i);
-        }
+
+        intTree.insert(2);
+        intTree.insert(10);
+        intTree.insert(3);
+        intTree.insert(6);
+        intTree.insert(1);
+        assertTrue(intTree.toString().equals("[1, 2, 3, 6, 10]"));
+        
+        intTree.insert(7);
+        intTree.insert(4);
+        intTree.insert(5);
+        intTree.insert(8);
+        intTree.insert(9);
+        assertTrue(intTree.toString().equals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"));
         
         assertFalse(intTree.lookup(0));
         assertFalse(intTree.lookup(11));
-
         assertTrue(intTree.lookup(1));
         assertTrue(intTree.lookup(10));
-        assertTrue(intTree.toString().equals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"));
         
         intTree.delete(5);
         assertTrue(intTree.toString().equals("[1, 2, 3, 4, 6, 7, 8, 9, 10]"));
+        intTree.delete(1);
+        assertTrue(intTree.toString().equals("[2, 3, 4, 6, 7, 8, 9, 10]"));
+        
     }
     
 }
