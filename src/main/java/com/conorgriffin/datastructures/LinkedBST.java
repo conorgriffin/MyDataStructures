@@ -1,5 +1,12 @@
 package com.conorgriffin.datastructures;
 
+/**
+ * An implementation of a Linked Binary Search Tree
+ * 
+ * @author conorgriffin
+ *
+ * @param <E>
+ */
 public class LinkedBST<E extends Comparable<? super E>> implements BST<E> {
 
     private BSTNode<E> root;
@@ -14,10 +21,39 @@ public class LinkedBST<E extends Comparable<? super E>> implements BST<E> {
         root = new BSTNode<E>(rootData);
     }
     
+    /**
+     * This inner class BSTNode<T> represents an element in the LinkedBST
+     * 
+     * @author conorgriffin
+     *
+     * @param <T> The type of the element
+     */
+    public static class BSTNode<T> {
+        private T data;
+        private BSTNode<T> left;
+        private BSTNode<T> right;
+        
+        public BSTNode(T data) {
+            this.data = data;
+            this.left = null;
+            this.right = null;
+        }
+        
+        public int compareTo() {
+            return 0;
+        }
+    }
+    
     public void insert(E k) {
         root = insert(root, k);
     }
 
+    /**
+     * Insert a node with the given key unless it already exists
+     * 
+     * @param node
+     * @param key
+     */
     private static <T extends Comparable<? super T>> BSTNode<T> insert(BSTNode<T> node, T key) {
         
         if(node == null) {
@@ -36,10 +72,10 @@ public class LinkedBST<E extends Comparable<? super E>> implements BST<E> {
     }
     
     /**
+     * Delete the node with a matching key if it exists
      * 
      * @param node
      * @param key
-     * @return
      */
     private static <T extends Comparable<? super T>> BSTNode<T> delete( BSTNode<T> node, T key) {
         if(node == null) {
@@ -91,42 +127,31 @@ public class LinkedBST<E extends Comparable<? super E>> implements BST<E> {
         }
     }
     
-    public static class BSTNode<T> {
-        private T data;
-        private BSTNode<T> left;
-        private BSTNode<T> right;
-        
-        public BSTNode(T data) {
-            this.data = data;
-            this.left = null;
-            this.right = null;
-        }
-        
-        public int compareTo() {
-            return 0;
-        }
-    }
-    
+    /**
+     * Output the tree as a comma-separated list
+     * @return String representing the tree as a list
+     */
     public String toString() {
-        StringBuilder string = new StringBuilder("[");
-        helpToString(root, string);
-        string.append("]");
-        return string.toString();
+        StringBuilder description = new StringBuilder("[");
+        subtreeToString(root, description);
+        description.append("]");
+        return description.toString();
     }
 
     /**
-     * Recursive help method for toString. 
+     * Recursive method to output tree as a string 
      * @param <T>
      * 
      * @param node
      * @param string
      */
-    private <T> void helpToString(BSTNode<T> node, StringBuilder string) {
-        if (node == null)
-            return; // Tree is empty, so leave.
-
+    private <T> void subtreeToString(BSTNode<T> node, StringBuilder string) {
+        if (node == null) {
+            return;
+        }
+        
         if (node.left != null) {
-            helpToString(node.left, string);
+            subtreeToString(node.left, string);
             string.append(", ");
         }
 
@@ -134,7 +159,7 @@ public class LinkedBST<E extends Comparable<? super E>> implements BST<E> {
 
         if (node.right != null) {
             string.append(", ");
-            helpToString(node.right, string);
+            subtreeToString(node.right, string);
         }
     }
     
