@@ -1,6 +1,9 @@
-package com.conorgriffin.datastructures;
+package com.conorgriffin.datastructures.tests;
 
 import org.junit.Test;
+
+import com.conorgriffin.datastructures.LinkedBST;
+
 import static org.junit.Assert.*;
 
 public class LinkedBSTTest {
